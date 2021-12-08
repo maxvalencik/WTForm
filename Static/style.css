@@ -1,0 +1,32 @@
+img{
+    width: 200px;
+    height: auto;
+}
+
+.info{
+    margin-top: 20px;
+    background-color: rgb(98, 194, 98);
+    color: white;
+    text-transform: uppercase;
+    border: solid 2px;
+}
+
+.error{
+    margin-top: 20px;
+    background-color: rgb(192, 52, 52);
+    color: white;
+    text-transform: uppercase;
+    border: solid 2px;
+}
+
+.container{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.inner-container{
+    display: flex;
+    flex-direction: column;
+    margin-right: 20px;
+}

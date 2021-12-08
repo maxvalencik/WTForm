@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% block title %}Home Page{% endblock %}
+
+{% block content %}
+
+<h1 class="text-primary container">Pets Available for Adoption!</h1>
+
+<div class="container">
+    <a class="btn btn-primary" href="/add">Add pet!</a>
+</div>
+
+
+<div class="container">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    {% for category, message in messages %}
+    <p class="{{category}}">{{message}}</p>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+</div>
+
+
+<div class="container">
+    {% if pets %}
+    {% for pet in pets %}
+
+    <div class="inner-container">
+        {% if pet.available %}
+
+        <h2 class="text-success">{{pet.name}}</h2>
+        {% else %}
+        <h2 class="text-danger">{{pet.name}}</h2>
+        {% endif %}
+
+        {% if pet.photo_url %}
+        <img src="{{pet.photo_url}}"">
+    {% endif %}
+
+    <p>{{pet.name}} is 
+    {% if pet.available %}
+        <b class=" text-success">available</b>
+        {% else %}
+        <b class="text-danger">not available</b>
+        {% endif %}
+        </p>
+
+        <form method="POST" action="/delete/{{pet.id}}">
+            <button class="btn btn-danger">Delete</button>
+            <a class="btn btn-info" href="/pet/{{pet.id}}">Details</a>
+        </form>
+    </div>
+
+    {% endfor %}
+
+
+    {% else %}
+    <p>No pets available!</p>
+
+    {% endif %}
+</div>
+
+{% endblock %}
